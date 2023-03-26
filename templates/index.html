@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>論文検索アプリ</title>
+</head>
+<body>
+  <h1>論文検索アプリ</h1>
+  <form action="/search" method="GET">
+    <input type="text" name="keyword" placeholder="論文のキーワードを入力してください">
+    <input type="submit" value="検索">
+  </form>
+  <hr>
+  <h2>興味関心タグから検索</h2>
+  <form action="/tag" method="GET">
+    <select name="tag">
+      <option value="machine_learning">機械学習</option>
+      <option value="natural_language_processing">自然言語処理</option>
+      <option value="computer_vision">コンピュータビジョン</option>
+      <option value="robotics">ロボティクス</option>
+    </select>
+    <input type="submit" value="検索">
+  </form>
+  <hr>
+  <h2>新着論文</h2>
+  <ul>
+    {% for paper in papers %}
+    <div class="card" onclick="location.href='/paper/{{ paper.id }}'">
+      <div class="card-header">
+        <h4>{{ paper.title }}</h4>
+      </div>
+      <div class="card-body">
+        <p>{{ paper.summary }}</p>
+      </div>
+    </div>
+    {% endfor %}
+    
+  </ul>
+</body>
+</html>
